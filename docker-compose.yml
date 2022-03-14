@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - /home/aragon/docker/grafana/docker_data/certs:/certs
+    env_file:
+      - /home/aragon/docker/grafana/docker_data/grafana_conf/config.monitoring 
+    environment:
+      - HTTP_USER="{{ grafana_user }}"
+      - HTTP_PASS="{{ grafana_passwd }}"
+    restart: always
